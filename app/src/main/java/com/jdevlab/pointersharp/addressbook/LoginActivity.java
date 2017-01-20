@@ -57,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onStop() {
         super.onStop();
         mAuth.removeAuthStateListener(mAuthListener);
+        mAuth.signOut();
     }
 
     public void On_LoginBtnClick(View view) {

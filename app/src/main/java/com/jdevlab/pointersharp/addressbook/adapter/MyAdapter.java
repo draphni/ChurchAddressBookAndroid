@@ -8,8 +8,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.jdevlab.pointersharp.addressbook.R;
+import com.jdevlab.pointersharp.addressbook.model.Member;
 
 import org.w3c.dom.Text;
+
+import java.util.List;
 
 /**
  * Created by Jaehyeong on 1/19/2017.
@@ -18,9 +21,9 @@ import org.w3c.dom.Text;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RecyclerVH> {
 
     Context c;
-    String[] members;
+    List<Member> members;
 
-    public MyAdapter(Context c, String[] members) {
+    public MyAdapter(Context c, List<Member> members) {
         this.c = c;
         this.members = members;
     }
@@ -33,12 +36,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RecyclerVH> {
 
     @Override
     public void onBindViewHolder(RecyclerVH holder, int position) {
-        holder.eName.setText(members[position]);
+        holder.eName.setText(members.get(position).geteName());
     }
 
     @Override
     public int getItemCount() {
-        return members.length;
+        return members.size();
     }
 
 

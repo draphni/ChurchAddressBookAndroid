@@ -40,7 +40,7 @@ public class YaFragment extends Fragment {
 
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        rv.setAdapter(new MyAdapter(getActivity(), ya));
+        //rv.setAdapter(new MyAdapter(getActivity(), ya));
         return rootView;
     }
 

@@ -39,7 +39,7 @@ public class StudentFragment extends Fragment {
 
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        rv.setAdapter(new MyAdapter(getActivity(), students));
+        //rv.setAdapter(new MyAdapter(getActivity(), students));
         return rootView;
     }
 

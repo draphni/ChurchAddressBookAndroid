@@ -41,7 +41,7 @@ public class MotherFragment extends Fragment {
 
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        rv.setAdapter(new MyAdapter(getActivity(), mothers));
+        //rv.setAdapter(new MyAdapter(getActivity(), mothers));
         return rootView;
     }
 

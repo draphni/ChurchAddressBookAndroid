@@ -11,9 +11,11 @@ public class Member {
     private String dob;
     private String dos;
     private String cell;
-    private String address1;
+    private String address;
     private String city;
     private String zip;
+    private String id;
+    private String type;
 
     public String geteName() {
         return eName;
@@ -63,12 +65,12 @@ public class Member {
         this.cell = cell;
     }
 
-    public String getAddress1() {
-        return address1;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAddress1(String address1) {
-        this.address1 = address1;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getCity() {
@@ -85,5 +87,21 @@ public class Member {
 
     public void setZip(String zip) {
         this.zip = zip;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
