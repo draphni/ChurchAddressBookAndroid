@@ -16,6 +16,33 @@ public class Member {
     private String zip;
     private String id;
     private String type;
+    private String gender;
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+
+    //Member(id, kName, eName, region, dob, dos, addr, city, zip, cell, gender, type);
+
+    public Member(String id, String kName, String eName, String region, String dob, String dos, String address, String city, String zip, String cell, String gender, String type) {
+        this.eName = eName;
+        this.kName = kName;
+        this.region = region;
+        this.dob = dob;
+        this.dos = dos;
+        this.cell = cell;
+        this.address = address;
+        this.city = city;
+        this.zip = zip;
+        this.id = id;
+        this.type = type;
+        this.gender = gender;
+    }
 
     public String geteName() {
         return eName;

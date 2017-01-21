@@ -37,6 +37,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RecyclerVH> {
     @Override
     public void onBindViewHolder(RecyclerVH holder, int position) {
         holder.eName.setText(members.get(position).geteName());
+        holder.kName.setText(members.get(position).getkName());
+        holder.region.setText(members.get(position).getRegion());
     }
 
     @Override
@@ -47,11 +49,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RecyclerVH> {
 
     public class RecyclerVH extends RecyclerView.ViewHolder {
         TextView eName;
+        TextView kName;
+        TextView region;
 
         public RecyclerVH(View itemView) {
             super(itemView);
 
             eName = (TextView) itemView.findViewById(R.id.eName);
+            kName = (TextView) itemView.findViewById(R.id.kName);
+            region = (TextView) itemView.findViewById(R.id.region);
         }
     }
 }

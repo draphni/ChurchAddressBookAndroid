@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.jdevlab.pointersharp.addressbook.R;
+import com.jdevlab.pointersharp.addressbook.adapter.DBHelper;
 import com.jdevlab.pointersharp.addressbook.adapter.MyAdapter;
 import com.jdevlab.pointersharp.addressbook.model.Member;
 
@@ -39,6 +40,8 @@ public class FatherFragment extends Fragment {
 
     private static List<Member> memberList = new ArrayList<Member>();
 
+    DBHelper dbHelper;
+
     public static FatherFragment NewInstance() {
         FatherFragment fatherFragment = new FatherFragment();
 
@@ -54,7 +57,9 @@ public class FatherFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        InitializeData();
+        dbHelper = new DBHelper(getActivity().getApplicationContext());
+
+        memberList = dbHelper.GetMembersByType("1");
 
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_father, container, false);
@@ -71,52 +76,7 @@ public class FatherFragment extends Fragment {
     }
 
     private void InitializeData() {
-        memberList = new ArrayList<Member>();
 
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference("church-member");
-
-        db.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                memberList = new ArrayList<Member>();
-
-                long c = dataSnapshot.getChildrenCount();
-
-                Iterable<DataSnapshot> snapshotIterator = dataSnapshot.getChildren();
-                Iterator<DataSnapshot> iterator = snapshotIterator.iterator();
-                while (iterator.hasNext()) {
-
-                    Object value = iterator.next().getValue();
-
-                    value.toString();
-
-                    Map<String, Object> td = (HashMap<String, Object>) iterator.next().getValue();
-
-                    String text = (String) td.get("eName");
-
-                    text.toString();
-
-                    List<Object> values = new ArrayList<>(td.values());
-
-                    value.toString();
-
-                    Member m = new Member();
-
-                    String k = (String)values.get(0);
-
-                    m.setkName((String)values.get(0));
-                    //memberList.add(value);
-                }
-
-                MyAdapter adapter = new MyAdapter(getActivity(), memberList);
-                rv.setAdapter(adapter);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
 
     }
 
