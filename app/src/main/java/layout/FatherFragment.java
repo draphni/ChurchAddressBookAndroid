@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,6 +20,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.jdevlab.pointersharp.addressbook.R;
 import com.jdevlab.pointersharp.addressbook.adapter.DBHelper;
 import com.jdevlab.pointersharp.addressbook.adapter.MyAdapter;
+import com.jdevlab.pointersharp.addressbook.adapter.RecyclerViewClickListener;
+import com.jdevlab.pointersharp.addressbook.adapter.RecyclerViewTouchListener;
 import com.jdevlab.pointersharp.addressbook.model.Member;
 
 import java.util.ArrayList;
@@ -72,6 +75,19 @@ public class FatherFragment extends Fragment {
 
         rv.setAdapter(adapter);
 
+        rv.addOnItemTouchListener(new RecyclerViewTouchListener(getActivity().getApplicationContext(), rv, new RecyclerViewClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Toast.makeText(getContext().getApplicationContext(), memberList.get(position).geteName() + " is clicked!", Toast.LENGTH_SHORT).show();
+                //do something
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+                Toast.makeText(getContext().getApplicationContext(), memberList.get(position).geteName() + " is long pressed!", Toast.LENGTH_SHORT).show();
+                //do something
+            }
+        }));
         return rootView;
     }
 

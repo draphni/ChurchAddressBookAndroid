@@ -59,5 +59,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RecyclerVH> {
             kName = (TextView) itemView.findViewById(R.id.kName);
             region = (TextView) itemView.findViewById(R.id.region);
         }
+
     }
 }
