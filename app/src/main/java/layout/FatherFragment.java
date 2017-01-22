@@ -23,6 +23,7 @@ import com.jdevlab.pointersharp.addressbook.adapter.MyAdapter;
 import com.jdevlab.pointersharp.addressbook.adapter.RecyclerViewClickListener;
 import com.jdevlab.pointersharp.addressbook.adapter.RecyclerViewTouchListener;
 import com.jdevlab.pointersharp.addressbook.model.Member;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,6 +39,8 @@ public class FatherFragment extends Fragment {
     private DatabaseReference db;
 
     private RecyclerView rv;
+
+    private SlidingUpPanelLayout slidingLayout;
 
     private MyAdapter adapter;
 
@@ -68,6 +71,8 @@ public class FatherFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_father, container, false);
 
         rv = (RecyclerView) rootView.findViewById(R.id.father_fragment);
+
+        slidingLayout = (SlidingUpPanelLayout) rootView.findViewById(R.id.sliding_layout);
 
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
 
