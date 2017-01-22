@@ -4,11 +4,108 @@
     android:layout_height="match_parent"
     tools:context="layout.FatherFragment">
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_height="match_parent"
+    <com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:sothree="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/sliding_layout"
         android:layout_width="match_parent"
-        android:id="@+id/father_fragment">
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        sothree:umanoDragView="@+id/dragView"
+        sothree:umanoOverlay="true"
+        sothree:umanoPanelHeight="0dp"
+        sothree:umanoParallaxOffset="100dp"
+        sothree:umanoScrollableView="@+id/main"
+        sothree:umanoShadowHeight="4dp"
+        sothree:umanoInitialState="hidden">
 
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/father_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+        </android.support.v7.widget.RecyclerView>
+
+        <!-- SLIDING LAYOUT -->
+        <LinearLayout
+            android:id="@+id/dragView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:clickable="true"
+            android:focusable="false"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/footer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:text="Slider Layoutfff"
+                    android:textSize="20sp"
+                    tools:text="Jaehyeong"
+                    android:paddingTop="6dp"/>
+                <TextView
+                    android:id="@+id/footer1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:text="ffdfdf"
+                    android:textSize="20sp"
+                    android:paddingTop="6dp"
+                    tools:text="1658 Bell blvd" />
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/footer3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:text="Slider Layouta"
+                    android:textSize="20sp"
+                    android:paddingTop="6dp"
+                    tools:text="hahahah" />
+
+                <TextView
+                    android:id="@+id/footer2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:text="Slider Layoutdd"
+                    android:textSize="20sp"
+                    android:paddingTop="16dp"
+                    tools:text="2013007801" />
+            </FrameLayout>
+
+        </LinearLayout>
+    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
+
+    <TextView
+        android:id="@+id/list_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:clickable="true"
+        android:focusable="false"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:text="Main Content"
+        android:textSize="16sp" />
 </FrameLayout>
