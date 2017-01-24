@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -83,14 +84,13 @@ public class FatherFragment extends Fragment {
         rv.addOnItemTouchListener(new RecyclerViewTouchListener(getActivity().getApplicationContext(), rv, new RecyclerViewClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Toast.makeText(getContext().getApplicationContext(), memberList.get(position).geteName() + " is clicked!", Toast.LENGTH_SHORT).show();
-                //do something
+                slidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
+                SetSlidingPanelDetail(position);
             }
 
             @Override
             public void onLongClick(View view, int position) {
-                Toast.makeText(getContext().getApplicationContext(), memberList.get(position).geteName() + " is long pressed!", Toast.LENGTH_SHORT).show();
-                //do something
+                //do something on long click
             }
         }));
         return rootView;
@@ -101,6 +101,30 @@ public class FatherFragment extends Fragment {
 
     }
 
+
+    private void SetSlidingPanelDetail(int position) {
+        //English Name
+        ((TextView) slidingLayout.findViewById(R.id.eNameTv)).setText(memberList.get(position).geteName());
+
+        //Korean Name
+        ((TextView) slidingLayout.findViewById(R.id.kNameTv)).setText(memberList.get(position).getkName());
+
+        //Address
+        ((TextView) slidingLayout.findViewById(R.id.addressTv)).setText(memberList.get(position).getAddress() + " " + memberList.get(position).getZip());
+
+        //Region
+        ((TextView) slidingLayout.findViewById(R.id.regionTv)).setText(memberList.get(position).getRegion());
+
+        //Phone number
+        ((TextView) slidingLayout.findViewById(R.id.phoneTv)).setText(memberList.get(position).getCell());
+
+        //DOB
+        ((TextView) slidingLayout.findViewById(R.id.dobTv)).setText(memberList.get(position).getDob());
+
+        //DOS
+        ((TextView) slidingLayout.findViewById(R.id.dosTv)).setText(memberList.get(position).getDos());
+
+    }
 
     public String toString() {
         return "Father Fragment";

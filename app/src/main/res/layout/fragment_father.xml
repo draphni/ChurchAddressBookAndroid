@@ -10,13 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="bottom"
-        sothree:umanoPanelHeight="68dp"
+        sothree:umanoPanelHeight="0dp"
         sothree:umanoShadowHeight="4dp">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/father_fragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
         </android.support.v7.widget.RecyclerView>
 
@@ -68,7 +68,7 @@
                     android:layout_marginRight="@dimen/activity_horizontal_margin" />
 
                 <TextView
-                    android:id="@+id/tvNumber1"
+                    android:id="@+id/phoneTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -111,7 +111,7 @@
                     android:layout_marginRight="@dimen/activity_horizontal_margin" />
 
                 <TextView
-                    android:id="@+id/tvNumber5"
+                    android:id="@+id/addressTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -158,7 +158,7 @@
                     android:layout_marginRight="@dimen/activity_horizontal_margin" />
 
                 <TextView
-                    android:id="@+id/tvNumber3"
+                    android:id="@+id/regionTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -201,7 +201,7 @@
                     android:layout_marginRight="@dimen/activity_horizontal_margin" />
 
                 <TextView
-                    android:id="@+id/tvNumber4"
+                    android:id="@+id/dobTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -244,7 +244,7 @@
                     android:layout_marginRight="@dimen/activity_horizontal_margin" />
 
                 <TextView
-                    android:id="@+id/tvNumber6"
+                    android:id="@+id/dosTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"

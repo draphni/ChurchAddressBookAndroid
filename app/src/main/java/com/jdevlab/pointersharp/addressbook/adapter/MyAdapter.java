@@ -1,10 +1,12 @@
 package com.jdevlab.pointersharp.addressbook.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jdevlab.pointersharp.addressbook.R;
@@ -13,6 +15,7 @@ import com.jdevlab.pointersharp.addressbook.model.Member;
 import org.w3c.dom.Text;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Jaehyeong on 1/19/2017.
@@ -39,6 +42,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RecyclerVH> {
         holder.eName.setText(members.get(position).geteName());
         holder.kName.setText(members.get(position).getkName());
         holder.region.setText(members.get(position).getRegion());
+
+        String id = members.get(position).getId();
+
+        Random rand = new Random();
+
+        int n = Integer.parseInt(id) % 23;
+        String imageSrc = "animal_" + n;
+
+        int imageId = c.getResources().getIdentifier(imageSrc, "drawable", c.getPackageName());
+        holder.imageView.setImageResource(imageId);
     }
 
     @Override
@@ -51,6 +64,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RecyclerVH> {
         TextView eName;
         TextView kName;
         TextView region;
+        ImageView imageView;
 
         public RecyclerVH(View itemView) {
             super(itemView);
@@ -58,6 +72,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RecyclerVH> {
             eName = (TextView) itemView.findViewById(R.id.eName);
             kName = (TextView) itemView.findViewById(R.id.kName);
             region = (TextView) itemView.findViewById(R.id.region);
+            imageView = (ImageView) itemView.findViewById(R.id.animal_profile);
         }
 
     }
