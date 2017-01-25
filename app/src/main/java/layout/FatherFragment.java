@@ -1,23 +1,17 @@
 package layout;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.jdevlab.pointersharp.addressbook.R;
 import com.jdevlab.pointersharp.addressbook.adapter.DBHelper;
 import com.jdevlab.pointersharp.addressbook.adapter.MyAdapter;
@@ -27,10 +21,7 @@ import com.jdevlab.pointersharp.addressbook.model.Member;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -123,7 +114,6 @@ public class FatherFragment extends Fragment {
 
         //DOS
         ((TextView) slidingLayout.findViewById(R.id.dosTv)).setText(memberList.get(position).getDos());
-
     }
 
     public String toString() {

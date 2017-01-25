@@ -5,23 +5,23 @@
         <item
             android:id="@+id/main_fragment"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Main" />
+            android:title="MAIN" />
         <item
             android:id="@+id/father_fragment"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:title="FATHER" />
         <item
             android:id="@+id/mother_fragment"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="MOTHER" />
         <item
             android:id="@+id/ya_fragment"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="Y.ADULt" />
         <item
             android:id="@+id/student_fragment"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="STUDENTS" />
     </group>
 
 </menu>

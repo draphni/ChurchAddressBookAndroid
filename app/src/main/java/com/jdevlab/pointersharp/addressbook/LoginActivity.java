@@ -66,13 +66,12 @@ public class LoginActivity extends AppCompatActivity {
 
         String a = email.getText().toString();
 
-        mAuth.signInWithEmailAndPassword(email.getText().toString(), pwd.getText().toString())
+        mAuth.signInWithEmailAndPassword(email.getText().toString() + "@jbch.org", pwd.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        //do something
-                        Toast.makeText(LoginActivity.this, "login success",
-                                Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, "login success", Toast.LENGTH_LONG).show();
+
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.

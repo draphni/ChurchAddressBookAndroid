@@ -1,5 +1,7 @@
 package com.jdevlab.pointersharp.addressbook;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import layout.FatherFragment;
 import layout.MainFragment;
@@ -119,5 +122,21 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void OnMapClick(View view) {
+        Uri gmmIntentUri = Uri.parse("geo:37.7749,-122.4192?q=" + Uri.encode("5st & Pike, Seattle"));
+
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW , gmmIntentUri);
+
+        mapIntent.setPackage("com.google.android.apps.maps");
+
+        startActivity(mapIntent);
+    }
+
+    public void OnCallClick(View view) {
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:0123456789"));
+        startActivity(intent);
     }
 }
