@@ -74,9 +74,4 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RecyclerVH> {
 
     }
 
-    public void setFilter(List<Member> membersList) {
-        members = new ArrayList<>();
-        members.addAll(membersList);
-        notifyDataSetChanged();
-    }
 }

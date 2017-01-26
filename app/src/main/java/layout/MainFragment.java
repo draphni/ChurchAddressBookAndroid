@@ -30,7 +30,7 @@ import java.util.List;
 
 
 
-public class MainFragment extends Fragment implements SearchView.OnQueryTextListener {
+public class MainFragment extends Fragment{
     private DatabaseReference db;
 
     private RecyclerView rv;
@@ -112,51 +112,4 @@ public class MainFragment extends Fragment implements SearchView.OnQueryTextList
         ((TextView) slidingLayout.findViewById(R.id.dosTv)).setText(memberList.get(position).getDos());
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.main_menu, menu);
-
-        final MenuItem item = menu.findItem(R.id.action_search);
-        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
-        searchView.setOnQueryTextListener(this);
-
-        MenuItemCompat.setOnActionExpandListener(item,
-                new MenuItemCompat.OnActionExpandListener() {
-                    @Override
-                    public boolean onMenuItemActionCollapse(MenuItem item) {
-// Do something when collapsed
-                        adapter.setFilter(memberList);
-                        return true; // Return true to collapse action view
-                    }
-
-                    @Override
-                    public boolean onMenuItemActionExpand(MenuItem item) {
-// Do something when expanded
-                        return true; // Return true to expand action view
-                    }
-                });
-    }
-    @Override
-    public boolean onQueryTextSubmit(String newText) {
-        final List<Member> filteredModelList = filter(memberList, newText);
-
-        adapter.setFilter(filteredModelList);
-        return true;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        return false;
-    }
-
-    private List<Member> filter(List<Member> models, String query) {
-        query = query.toLowerCase();final List<Member> filteredModelList = new ArrayList<>();
-        for (Member model : models) {
-            final String text = model.geteName().toLowerCase();
-            if (text.contains(query)) {
-                filteredModelList.add(model);
-            }
-        }
-        return filteredModelList;
-    }
 }
