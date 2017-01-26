@@ -40,7 +40,9 @@ public class LoginActivity extends AppCompatActivity {
                 if (user == null) {
                     //do something
                 } else {
+                    //if auth succeed, navigate to main activity
                     Intent intent = new Intent(getBaseContext(), MainActivity.class);
+
                     startActivity(intent);
                 }
             }
@@ -64,17 +66,12 @@ public class LoginActivity extends AppCompatActivity {
         EditText email = (EditText) findViewById(R.id.et_login);
         EditText pwd = (EditText) findViewById(R.id.et_pwd);
 
-        String a = email.getText().toString();
-
         mAuth.signInWithEmailAndPassword(email.getText().toString() + "@jbch.org", pwd.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Toast.makeText(LoginActivity.this, "login success", Toast.LENGTH_LONG).show();
 
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
                             Toast.makeText(LoginActivity.this, "login failed",
                                     Toast.LENGTH_LONG).show();

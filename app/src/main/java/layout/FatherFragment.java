@@ -29,15 +29,10 @@ import java.util.List;
 public class FatherFragment extends Fragment {
 
     private DatabaseReference db;
-
     private RecyclerView rv;
-
     private SlidingUpPanelLayout slidingLayout;
-
     private MyAdapter adapter;
-
     private static List<Member> memberList = new ArrayList<Member>();
-
     DBHelper dbHelper;
 
     public static FatherFragment NewInstance() {
@@ -47,7 +42,6 @@ public class FatherFragment extends Fragment {
     }
 
     public FatherFragment() {
-        // Required empty public constructor
     }
 
 
@@ -59,7 +53,6 @@ public class FatherFragment extends Fragment {
 
         memberList = dbHelper.GetMembersByType("1");
 
-        // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_father, container, false);
 
         rv = (RecyclerView) rootView.findViewById(R.id.father_fragment);
@@ -86,12 +79,6 @@ public class FatherFragment extends Fragment {
         }));
         return rootView;
     }
-
-    private void InitializeData() {
-
-
-    }
-
 
     private void SetSlidingPanelDetail(int position) {
         //English Name

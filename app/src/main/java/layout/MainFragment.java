@@ -1,30 +1,162 @@
 package layout;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
 import com.jdevlab.pointersharp.addressbook.R;
+import com.jdevlab.pointersharp.addressbook.adapter.DBHelper;
+import com.jdevlab.pointersharp.addressbook.adapter.MyAdapter;
+import com.jdevlab.pointersharp.addressbook.adapter.RecyclerViewClickListener;
+import com.jdevlab.pointersharp.addressbook.adapter.RecyclerViewTouchListener;
+import com.jdevlab.pointersharp.addressbook.model.Member;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class MainFragment extends Fragment {
+import java.util.ArrayList;
+import java.util.List;
 
+
+
+public class MainFragment extends Fragment implements SearchView.OnQueryTextListener {
+    private DatabaseReference db;
+
+    private RecyclerView rv;
+
+    private SlidingUpPanelLayout slidingLayout;
+
+    private MyAdapter adapter;
+
+    private static List<Member> memberList = new ArrayList<Member>();
+
+    DBHelper dbHelper;
+
+    public static MainFragment NewInstance() {
+        MainFragment mainFragment = new MainFragment();
+
+        return mainFragment;
+    }
 
     public MainFragment() {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        dbHelper = new DBHelper(getActivity().getApplicationContext());
+
+        memberList = dbHelper.GetAllMembers();
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+
+        rv = (RecyclerView) rootView.findViewById(R.id.main_fragment);
+
+        slidingLayout = (SlidingUpPanelLayout) rootView.findViewById(R.id.sliding_layout);
+
+        rv.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        adapter = new MyAdapter(getActivity(), memberList);
+
+        rv.setAdapter(adapter);
+
+        rv.addOnItemTouchListener(new RecyclerViewTouchListener(getActivity().getApplicationContext(), rv, new RecyclerViewClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                slidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
+                SetSlidingPanelDetail(position);
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+                //do something on long click
+            }
+        }));
+        return rootView;
     }
 
+    private void SetSlidingPanelDetail(int position) {
+        //English Name
+        ((TextView) slidingLayout.findViewById(R.id.eNameTv)).setText(memberList.get(position).geteName());
+
+        //Korean Name
+        ((TextView) slidingLayout.findViewById(R.id.kNameTv)).setText(memberList.get(position).getkName());
+
+        //Address
+        ((TextView) slidingLayout.findViewById(R.id.addressTv)).setText(memberList.get(position).getAddress() + " " + memberList.get(position).getZip());
+
+        //Region
+        ((TextView) slidingLayout.findViewById(R.id.regionTv)).setText(memberList.get(position).getRegion());
+
+        //Phone number
+        ((TextView) slidingLayout.findViewById(R.id.phoneTv)).setText(memberList.get(position).getCell());
+
+        //DOB
+        ((TextView) slidingLayout.findViewById(R.id.dobTv)).setText(memberList.get(position).getDob());
+
+        //DOS
+        ((TextView) slidingLayout.findViewById(R.id.dosTv)).setText(memberList.get(position).getDos());
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.main_menu, menu);
+
+        final MenuItem item = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
+        searchView.setOnQueryTextListener(this);
+
+        MenuItemCompat.setOnActionExpandListener(item,
+                new MenuItemCompat.OnActionExpandListener() {
+                    @Override
+                    public boolean onMenuItemActionCollapse(MenuItem item) {
+// Do something when collapsed
+                        adapter.setFilter(memberList);
+                        return true; // Return true to collapse action view
+                    }
+
+                    @Override
+                    public boolean onMenuItemActionExpand(MenuItem item) {
+// Do something when expanded
+                        return true; // Return true to expand action view
+                    }
+                });
+    }
+    @Override
+    public boolean onQueryTextSubmit(String newText) {
+        final List<Member> filteredModelList = filter(memberList, newText);
+
+        adapter.setFilter(filteredModelList);
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
+    }
+
+    private List<Member> filter(List<Member> models, String query) {
+        query = query.toLowerCase();final List<Member> filteredModelList = new ArrayList<>();
+        for (Member model : models) {
+            final String text = model.geteName().toLowerCase();
+            if (text.contains(query)) {
+                filteredModelList.add(model);
+            }
+        }
+        return filteredModelList;
+    }
 }

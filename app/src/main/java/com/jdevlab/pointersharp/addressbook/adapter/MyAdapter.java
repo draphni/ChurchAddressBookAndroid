@@ -14,12 +14,9 @@ import com.jdevlab.pointersharp.addressbook.model.Member;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-/**
- * Created by Jaehyeong on 1/19/2017.
- */
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RecyclerVH> {
 
@@ -45,13 +42,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RecyclerVH> {
 
         String id = members.get(position).getId();
 
-        Random rand = new Random();
+        if (!id.equals("\n")) {
+            int n = Integer.parseInt(id) % 23;
+            String imageSrc = "animal_" + n;
 
-        int n = Integer.parseInt(id) % 23;
-        String imageSrc = "animal_" + n;
-
-        int imageId = c.getResources().getIdentifier(imageSrc, "drawable", c.getPackageName());
-        holder.imageView.setImageResource(imageId);
+            int imageId = c.getResources().getIdentifier(imageSrc, "drawable", c.getPackageName());
+            holder.imageView.setImageResource(imageId);
+        }
     }
 
     @Override
@@ -75,5 +72,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RecyclerVH> {
             imageView = (ImageView) itemView.findViewById(R.id.animal_profile);
         }
 
+    }
+
+    public void setFilter(List<Member> membersList) {
+        members = new ArrayList<>();
+        members.addAll(membersList);
+        notifyDataSetChanged();
     }
 }

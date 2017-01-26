@@ -57,7 +57,6 @@ public class MotherFragment extends Fragment {
 
         memberList = dbHelper.GetMembersByType("2");
 
-        // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_mother, container, false);
 
         rv = (RecyclerView) rootView.findViewById(R.id.mother_fragment);

@@ -30,7 +30,9 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         setTitle("Main Fragment");
+
         MainFragment fragment = new MainFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frame, fragment, "main fragment");
@@ -68,13 +71,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_search) {
             return true;
         }
 
@@ -124,6 +123,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    //open google map
     public void OnMapClick(View view) {
         Uri gmmIntentUri = Uri.parse("geo:37.7749,-122.4192?q=" + Uri.encode("5st & Pike, Seattle"));
 
@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity
         startActivity(mapIntent);
     }
 
+    //open dialer
     public void OnCallClick(View view) {
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:0123456789"));

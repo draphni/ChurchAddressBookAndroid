@@ -10,10 +10,6 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Jaehyeong on 1/21/2017.
- */
-
 public class DBHelper extends SQLiteAssetHelper {
 
     private static final String DB_NAME = "local.db";
@@ -36,6 +32,26 @@ public class DBHelper extends SQLiteAssetHelper {
         setForcedUpgrade();
     }
 
+    public List<Member> GetAllMembers() {
+        List<Member> members = new ArrayList<Member>();
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM ChurchMember", null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                Member m = CursorToMember(cursor);
+                members.add(m);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+
+        return members;
+    }
+
     public Member GetMemberById(int id) {
         Member m = null;
 
@@ -55,15 +71,18 @@ public class DBHelper extends SQLiteAssetHelper {
 
     public List<Member> GetMembersByType(String type) {
         List<Member> members = new ArrayList<Member>();
+
         SQLiteDatabase db = getReadableDatabase();
+
         Cursor cursor = db.query(
                 DBHelper.TABLE_CHURCHMEMBER, null, DBHelper.COLUMN_TYPE + " =?",
                 new String[]{type}, null, null, orderBy);
+
         if (cursor != null) {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
-                Member bike = CursorToMember(cursor);
-                members.add(bike);
+                Member m = CursorToMember(cursor);
+                members.add(m);
                 cursor.moveToNext();
             }
             cursor.close();
@@ -102,10 +121,5 @@ public class DBHelper extends SQLiteAssetHelper {
         Member m = new Member(id, kName, eName, region, dob, dos, addr, city, zip, cell, gender, type);
 
         return m;
-
-                /*String a = cursor.getString(1);
-
-        Member m = new Member(cursor.getString(2),cursor.getString(1),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(9),
-                cursor.getString(6),cursor.getString(7),cursor.getString(8),cursor.getString(0),cursor.getString(11),cursor.getString(10));*/
     }
 }
